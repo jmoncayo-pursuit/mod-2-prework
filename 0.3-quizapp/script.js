@@ -40,25 +40,25 @@ const questionElement=document.getElementById("question");
 const answerButtons=document.getElementById("answer-buttons");
 const nextButton=document.getElementById("next-btn");
 
-let currentQuestionIndex=0;
-let score=0;
+let currentQuestionIndex = 0;
+let score = 0;
 
 function startQuiz(){
-    currentQuestionIndex=0;
-    score=0;
-    nextButton.innerHTML="Next";
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
     showQuestion();
 }
 
 function showQuestion(){
     resetState();
-    let currentQuestion=questions[currentQuestionIndex];
-    let questionNo= currentQuestionIndex +1;
-    questionElement.innerHTML=questionNo+". "+currentQuestion.question
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex +1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question
 
     currentQuestion.answer.forEach(answer=>{
-        const button=document.createElement("button");
-        button.innerHTML=answer.text;
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
         button.classList.add('btn');
         answerButtons.appendChild(button);
         if(answer.correct){
@@ -79,8 +79,8 @@ function resetState(){
 }
 
 function selectAnswer(e){
-    const selectedBtn=e.target;
-    const isCorrect=selectedBtn.dataset.correct==='true';
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === 'true';
     if(isCorrect){
         selectedBtn.classList.add('correct')
         score++
@@ -89,18 +89,18 @@ function selectAnswer(e){
         selectedBtn.classList.add('incorrect')
     }
     Array.from(answerButtons.children).forEach(button=>{
-        if(button.dataset.correct==='true'){
+        if(button.dataset.correct === 'true'){
             button.classList.add('correct')
         }
-        button.disabled=true;
+        button.disabled = true;
     });
     nextButton.style.display='block';
 }
 function showScore(){
     resetState();
-    questionElement.innerHTML=`You scored ${score} out of ${questions.length}!`;
-    nextButton.innerHTML="Play Again"
-    nextButton.style.display="block"
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "Play Again"
+    nextButton.style.display = "block"
 }
 
 
